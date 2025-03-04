@@ -51,6 +51,7 @@ SIMPLE_JWT = {
 # Application definition
 
 INSTALLED_APPS = [
+    "jazzmin",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -101,14 +102,25 @@ DATABASES = {
     'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }
 
-import os
 
 
+
+# # DATABASES = {
+# #     'default': dj_database_url.config(
+# #         default="postgresql://neondb_owner:npg_dplr6ThLg4cO@ep-royal-fire-a5s63jhb-pooler.us-east-2.aws.neon.tech/neondb?sslmode=require"
+# #     )
+# # }
 # DATABASES = {
-#     'default': dj_database_url.config(
-#         default="postgresql://neondb_owner:npg_dplr6ThLg4cO@ep-royal-fire-a5s63jhb-pooler.us-east-2.aws.neon.tech/neondb?sslmode=require"
-#     )
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'myapiappdb',    # New database name
+#         'USER': 'myapiuser',      # New PostgreSQL user
+#         'PASSWORD': 'mypassword', # User's password
+#         'HOST': 'localhost',      # If PostgreSQL is running locally
+#         'PORT': '5432',           # Default PostgreSQL port
+#     }
 # }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -153,3 +165,81 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWS_CREDENTIALS = True
+
+JAZZMIN_UI_TWEAKS = {
+    # General UI Enhancements
+    "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text": False,
+    "brand_small_text": False,
+    "brand_colour": "navbar-dark",  # Dark navbar branding for consistency
+
+    # Navbar Settings
+    "navbar": "navbar-dark",  # Dark navbar for better contrast in dark mode
+    "navbar_fixed": True,  # Keep navbar fixed at the top
+    "no_navbar_border": True,  # Removes bottom border for a sleek appearance
+
+    # Sidebar Settings
+    "sidebar": "sidebar-dark-primary",  # Dark sidebar for seamless UI
+    "sidebar_fixed": True,  # Keep sidebar fixed for better navigation
+    "sidebar_nav_small_text": False,  # Normal-sized sidebar text for readability
+    "sidebar_disable_expand": False,  # Allow sidebar expansion
+    "sidebar_nav_child_indent": True,  # Indent child elements for clarity
+    "sidebar_nav_compact_style": True,  # Compact for a cleaner look
+    "sidebar_nav_legacy_style": False,  # Keep modern sidebar style
+    "sidebar_nav_flat_style": True,  # Flat styling for a sleek UI
+
+    # Layout & Footer
+    "layout_boxed": False,  # Full-width layout for a modern feel
+    "footer_fixed": True,  # Keep footer fixed for better structure
+
+    # Theme & Dark Mode (Improved)
+    "theme": "darkly",  # Dark theme for a sleek, professional look
+    "dark_mode_theme": "cyborg",  # Enhanced dark mode for high contrast
+
+    # Button Styles (More modern, compact design)
+    "button_classes": {
+        "primary": "btn btn-outline-primary",
+        "secondary": "btn btn-outline-secondary",
+        "info": "btn btn-outline-info",
+        "warning": "btn btn-outline-warning",
+        "danger": "btn btn-outline-danger",
+        "success": "btn btn-outline-success",
+    },
+}
+JAZZMIN_SETTINGS = {
+    # Custom Icons for a Professional Look
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.group": "fas fa-users",
+        "api.Product": "fas fa-box",
+        "api.Order": "fas fa-shopping-cart",  # Example for Orders
+    },
+
+    # Custom Branding & Login Page (Dark Theme Compatible)
+    "login_logo": "images/custom_dark_logo.png",  # Dark mode-friendly logo
+    "login_background": "images/dark_background.jpg",  # High contrast background
+
+    # Custom Links in Admin Panel
+    "custom_links": {
+        "auth": [
+            {
+                "name": "Manage Users",
+                "url": "auth:user_changelist",
+                "icon": "fas fa-users",
+                "permissions": ["auth.view_user"],
+            },
+            {
+                "name": "User Activity Log",
+                "url": "admin:auth_user_changelist",
+                "icon": "fas fa-clipboard-list",
+                "permissions": ["auth.view_user"],
+            },
+        ]
+    },
+
+    # Collapsible Side Menu for Better Navigation
+    "hide_apps": ["sessions"],  # Hide unnecessary apps from admin
+}
+
